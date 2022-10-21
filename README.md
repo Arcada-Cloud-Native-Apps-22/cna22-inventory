@@ -1,13 +1,13 @@
 # CloudNativeInv
 Inventory api for CN
 
-# 1 MongoDB
+## 1 MongoDB
 connected!
 
-# 2 Azure
+## 2 Azure
 - driftsätt
 
-# 3 Node miljö
+## 3 Node miljö
 
 Fixa så att andra får en respons av ngt slag från vår api
 
@@ -24,3 +24,5 @@ WAREHOUSE:
 name,
 place,
 
+## ERRORS
+500 internal server error

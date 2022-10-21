@@ -1,5 +1,16 @@
+const mongoose = require('mongoose')
 
-/* stad,
-    adress,
-    unique
-*/
+const warehouseSchema = new mongoose.Schema({
+    city: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true,
+        unique: true
+    }
+}, { timestamps: true })
+
+
+module.exports = mongoose.model('Warehouse', warehouseSchema)
