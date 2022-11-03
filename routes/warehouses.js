@@ -16,10 +16,10 @@ router.get('/', async(req, res) => {
 })
 
 // POST a new warehouse
-router.post('/', authToken, async(req, res) => {
+router.post('/', async(req, res) => {
     try {
         const warehouse = new Warehouse({
-            city: req.body.city,
+            name: req.body.name,
             address: req.body.address
         })
 
@@ -36,7 +36,7 @@ router.post('/', authToken, async(req, res) => {
 
 // PATCH
 
-router.patch('/:id', authToken, async(req, res) => {
+router.patch('/:id', async(req, res) => {
     try {
         const updateWH = await Warehouse.findByIdAndUpdate({ _id: req.params.id, createdBy: req.authUser.sub }, // Kanske måste ändra på createdBy
             req.body, // Updateringen som skall ske
@@ -50,7 +50,7 @@ router.patch('/:id', authToken, async(req, res) => {
 
 // DELETE
 
-router.delete('/:id', authToken, async(req, res) => {
+router.delete('/:id', async(req, res) => {
     try {
         const deleteWarehouse = await Warehouse.deleteOne({
             _id: req.params.id,

@@ -1,4 +1,4 @@
-@baseURL = "https://sbb-inventory.azurewebsites.net"
+@baseURL = http://localhost:3123
 
 
 ### POST 
@@ -7,6 +7,6 @@ POST {{baseURL}}/warehouses/
 Content-Type: application/json
 
 {
-    "city": "Helsinki",
+    "name": "Helsinki",
     "address": "Romgatan 5"
 }

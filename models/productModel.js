@@ -1,21 +1,28 @@
 /*
-namn,
 {
-    warehouse
-    amount
-},
-{
-    warehouse
-    amount
-},
-{
-    warehouse
-    amount
-}
+    "product": "KarhuIV",
+    "warehouses":
+            [{
+                "name":"Göteborg",
+                "amount": 50,
+                "updatedAt": "10.10.2010"
+            },
+            {
+                "name": "Helsingfors",
+                "amount": 40,
+                "updatedAt": "2848"
+            },
+            {
+                "name": "Vasa",
+                "amount": 24,
+                "updatedAt": "24267"
+            }],
+            "createdAt": "242322"
+    }
 */
 
 const warehouseSchema = new mongoose.Schema({
-    warehouse: {
+    name: {
         type: String,
         required: true
     },
@@ -32,11 +39,8 @@ const inventorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    wareHouse: [warehouseSchema]
+    warehouses: [warehouseSchema]
 }, { timestamps: true });
-
-
-
 
 
 module.exports = mongoose.model('Inventory', inventorySchema)
