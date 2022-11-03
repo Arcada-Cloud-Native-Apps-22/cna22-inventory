@@ -1,5 +1,8 @@
 @baseURL = http://localhost:3123
 
+### GET 
+
+GET {{baseURL}}/warehouses/
 
 ### POST 
 
@@ -10,3 +13,4 @@ Content-Type: application/json
     "name": "Helsinki",
     "address": "Romgatan 5"
 }
+
