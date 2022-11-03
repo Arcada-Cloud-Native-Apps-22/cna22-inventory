@@ -23,7 +23,7 @@ router.post('/', async(req, res) => {
         })
 
         const newProduct = await product.save()
-        res.send({ msg: "Warehouse has been saved ", newProduct })
+        res.send({ msg: "Product has been saved ", newProduct })
 
 
     } catch (error) {
