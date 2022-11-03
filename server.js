@@ -23,6 +23,10 @@ app.use('/', express.static(__dirname + '/public'))
 const warehouseRouter = require('./routes/warehouses')
 app.use('/warehouses', warehouseRouter)
 
+// products endpoint
+const productRouter = require('./routes/products')
+app.use('/products', productRouter)
+
 app.listen(PORT, () => {
     //callback så att vi vet att appen startat
     console.log(`Server listening on port: ${PORT}`)
