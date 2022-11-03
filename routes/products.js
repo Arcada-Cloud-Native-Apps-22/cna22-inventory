@@ -4,7 +4,7 @@ const Product = require('../models/productModel')
 const { updateOne } = require('../models/productModel')
 
 
-// GET all warehouses
+// GET all products
 
 router.get('/', async(req, res) => {
     try {
@@ -15,7 +15,7 @@ router.get('/', async(req, res) => {
     }
 })
 
-// POST a new warehouse
+// POST a new product
 router.post('/', async(req, res) => {
     try {
         const product = new Product({
