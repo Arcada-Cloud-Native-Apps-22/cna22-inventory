@@ -9,20 +9,12 @@ connected!
 
 ## 3 Node miljö
 
-Fixa så att andra får en respons av ngt slag från vår api
+DONE
+authentication
 
-express och mongoode installed
-/public for instructions
+TODO
+middleware som GETar alla warehouses namn och checkar om det är samma. return TRUE eller FALSE
 
-INV:
-Varje product innehåller data över i vilka warehouses de finns och hur många av dem.
-Också 
-- Kollar att det pushar till ett warehouse som finns
-
-
-WAREHOUSE:
-name,
-place,
 
 ## ERRORS
 500 internal server error
