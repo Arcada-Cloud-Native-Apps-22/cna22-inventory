@@ -31,4 +31,20 @@ router.post('/', async(req, res) => {
     }
 })
 
+// PUT CHANGE AMOUNT
+router.put('/:id', async(req, res) => {
+    try {
+        const subtractAmount = await Product({
+            product: req.body.product
+        })
+
+        const newProduct = await product.save()
+        res.send({ msg: "Product has been saved ", newProduct })
+
+
+    } catch (error) {
+        res.status(500).send({ msg: error.message })
+    }
+})
+
 module.exports = router
