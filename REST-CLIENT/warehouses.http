@@ -14,3 +14,13 @@ Content-Type: application/json
     "address": "Romgatan 5"
 }
 
+### POST 
+
+POST {{baseURL}}/warehouses/
+Content-Type: application/json
+
+{
+    "name": "Vasa",
+    "address": "Vasa gatan 5"
+}
+

@@ -3,7 +3,6 @@ const router = express.Router()
 const Product = require('../models/productModel')
 const { updateOne } = require('../models/productModel')
 
-
 // GET all products
 
 router.get('/', async(req, res) => {
