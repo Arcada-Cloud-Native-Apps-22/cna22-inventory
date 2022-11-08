@@ -10,19 +10,20 @@ POST {{baseURL}}/products/
 Content-Type: application/json
 
 {
-	"product": "KarhuIV",
-	"warehouses":
-			[{
-				"name":"Göteborg",
-				"amount": 50
-			},
-			{
-				"name": "Helsingfors",
-				"amount": 40
-			},
-			{
-				"name": "Vasa",
-				"amount": 24
-			}]
-	}
+	"product": "TestBeer3",
+	"warehouses": [
+		{
+			"name":"Göteborg",
+			"amount": 50
+		},
+		{
+			"name": "Helsingfors",
+			"amount": 40
+		},
+		{
+			"name": "Vasa",
+			"amount": 24
+		}
+	]
+}
 

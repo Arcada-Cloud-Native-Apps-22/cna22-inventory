@@ -18,7 +18,8 @@ router.get('/', async(req, res) => {
 router.post('/', async(req, res) => {
     try {
         const product = new Product({
-            product: req.body.product
+            product: req.body.product,
+            warehouses: req.body.warehouses
         })
 
         const newProduct = await product.save()
