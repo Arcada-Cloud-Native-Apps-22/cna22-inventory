@@ -10,14 +10,14 @@ POST {{baseURL}}/products/
 Content-Type: application/json
 
 {
-	"product": "TestBeer3",
+	"product": "TestBeer16",
 	"warehouses": [
 		{
 			"name":"Göteborg",
 			"amount": 50
 		},
 		{
-			"name": "Helsingfors",
+			"name": "Helsingforssss",
 			"amount": 40
 		},
 		{

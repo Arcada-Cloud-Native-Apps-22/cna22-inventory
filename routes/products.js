@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Product = require('../models/productModel')
 const { updateOne } = require('../models/productModel')
+const warehouseCheck = require('../middleware/warehouseCheck')
 
 // GET all products
 
@@ -15,7 +16,7 @@ router.get('/', async(req, res) => {
 })
 
 // POST a new product
-router.post('/', async(req, res) => {
+router.post('/', warehouseCheck, async(req, res) => {
     try {
         const product = new Product({
             product: req.body.product,
