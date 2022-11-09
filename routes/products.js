@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/productModel')
+const authToken = require('../auth/authorization')
 const { updateOne } = require('../models/productModel')
 const warehouseCheck = require('../middleware/warehouseCheck')
 
@@ -9,6 +10,20 @@ const warehouseCheck = require('../middleware/warehouseCheck')
 router.get('/', async(req, res) => {
     try {
         const product = await Product.find()
+        res.send(product)
+    } catch (error) {
+        res.status(500).send({ msg: error.message })
+    }
+})
+
+// GET specific product
+
+router.get('/:id', authToken, async(req, res) => {
+    try {
+        const product = await Product.findOne({ _id: req.params.id })
+        if (!product) {
+            return res.status(404).send({ msg: "Note not found" })
+        }
         res.send(product)
     } catch (error) {
         res.status(500).send({ msg: error.message })
