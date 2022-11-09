@@ -7,7 +7,7 @@ const warehouseCheck = require('../middleware/warehouseCheck')
 
 // GET all products
 
-router.get('/', async(req, res) => {
+router.get('/', authToken, async(req, res) => {
     try {
         const product = await Product.find()
         res.send(product)
@@ -31,7 +31,7 @@ router.get('/:id', authToken, async(req, res) => {
 })
 
 // POST a new product
-router.post('/', warehouseCheck, async(req, res) => {
+router.post('/', authToken, warehouseCheck, async(req, res) => {
     try {
         const product = new Product({
             product: req.body.product,
