@@ -12,7 +12,7 @@ const warehouseSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const productSchema = new mongoose.Schema({
-    product: {
+    _id: {
         type: String,
         required: true
     },

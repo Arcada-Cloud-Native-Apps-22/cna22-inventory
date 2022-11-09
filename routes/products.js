@@ -34,7 +34,7 @@ router.get('/:id', authToken, async(req, res) => {
 router.post('/', authToken, warehouseCheck, async(req, res) => {
     try {
         const product = new Product({
-            product: req.body.product,
+            _id: req.body.product,
             warehouses: req.body.warehouses
         })
 

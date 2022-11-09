@@ -1,6 +1,6 @@
 @baseURL = http://localhost:3123
 
-@token = Bearer {{$dotenv API_TEST}}
+@token = Bearer {{$dotenv API_KEY_ORDER}}
 
 ### GET 
 
@@ -19,19 +19,19 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"product": "PaskaBiira",
+	"product": "customid56758r9347462358",
 	"warehouses": [
 		{
 			"name":"Göteborg",
-			"amount": 50
+			"amount": 0
 		},
 		{
 			"name": "Helsingfors",
-			"amount": 40
+			"amount": 0
 		},
 		{
 			"name": "Vasa",
-			"amount": 24
+			"amount": 0
 		}
 	]
 }
