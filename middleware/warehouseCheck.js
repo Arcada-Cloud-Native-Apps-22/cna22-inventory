@@ -5,6 +5,11 @@ module.exports = async (req, res, next) => {
     try {
         //pulls info from body.warehouses
         const warehouses = req.body.warehouses
+        const DBwarehouses = await Warehouse.find({})
+        
+        if(warehouses.length != DBwarehouses.length){
+            return res.status(500).send({ msg: "Incorrect warehouse amount. Please include all warehouses in request (from inventory warehouseCheck)"})
+        }
 
         //check if warehouses are even included in body
         if(warehouses) {

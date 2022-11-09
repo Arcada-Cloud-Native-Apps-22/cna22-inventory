@@ -22,8 +22,12 @@ Authorization: {{token}}
 	"product": "customid56758r9347462358",
 	"warehouses": [
 		{
+			"name":"Göteborg",
+			"amount": 20
+		},
+		{
 			"name": "Helsingfors",
-			"amount": 0
+			"amount": 31
 		}
 	]
 }
