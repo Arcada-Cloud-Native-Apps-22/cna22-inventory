@@ -22,12 +22,28 @@ Authorization: {{token}}
 	"product": "customid56758r9347462358",
 	"warehouses": [
 		{
-			"name":"Göteborg",
+			"name": "Helsingfors",
 			"amount": 0
+		}
+	]
+}
+
+### PATCH
+
+PATCH {{baseURL}}/products/customid56758r9347462358
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"product": "customid56758r9347462358",
+	"warehouses": [
+		{
+			"name":"Göteborg",
+			"amount": 20
 		},
 		{
 			"name": "Helsingfors",
-			"amount": 0
+			"amount": 31
 		},
 		{
 			"name": "Vasa",
@@ -36,3 +52,24 @@ Authorization: {{token}}
 	]
 }
 
+### PATCH
+
+PATCH {{baseURL}}/products/customid56758r9347462358
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"product": "customid56758r9347462358",
+	"warehouses": [
+		{
+			"name":"Göteborg",
+			"amount": 20
+		}
+	]
+}
+
+### DELETE
+
+DELETE {{baseURL}}/products/customid56758r9347462358
+Content-Type: application/json
+Authorization: {{token}}

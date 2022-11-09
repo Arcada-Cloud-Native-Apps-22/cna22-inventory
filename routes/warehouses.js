@@ -40,7 +40,7 @@ router.post('/', authToken, async(req, res) => {
 
 router.patch('/:id', authToken, async(req, res) => {
     try {
-        const updateWH = await Warehouse.findByIdAndUpdate({ _id: req.params.id, createdBy: req.authUser.sub }, // Kanske måste ändra på createdBy
+        const updateWH = await Warehouse.findByIdAndUpdate({ _id: req.params.id }, 
             req.body, // Updateringen som skall ske
             { new: true })
         res.send({ msg: "Warehouse has been updated", updateWH: updateOne })
@@ -55,8 +55,7 @@ router.patch('/:id', authToken, async(req, res) => {
 router.delete('/:id', authToken, async(req, res) => {
     try {
         const deleteWarehouse = await Warehouse.deleteOne({
-            _id: req.params.id,
-            createdBy: req.authUser.sub
+            _id: req.params.id
         })
         if (!deleteWarehouse) {
             return res.status(404).send({ msg: "No such warehouse" })

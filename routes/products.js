@@ -7,7 +7,7 @@ const warehouseCheck = require('../middleware/warehouseCheck')
 
 // GET all products
 
-router.get('/', authToken, async(req, res) => {
+router.get('/', authToken, async (req, res) => {
     try {
         const product = await Product.find()
         res.send(product)
@@ -18,7 +18,7 @@ router.get('/', authToken, async(req, res) => {
 
 // GET specific product
 
-router.get('/:id', authToken, async(req, res) => {
+router.get('/:id', authToken, async (req, res) => {
     try {
         const product = await Product.findOne({ _id: req.params.id })
         if (!product) {
@@ -31,7 +31,7 @@ router.get('/:id', authToken, async(req, res) => {
 })
 
 // POST a new product
-router.post('/', authToken, warehouseCheck, async(req, res) => {
+router.post('/', authToken, warehouseCheck, async (req, res) => {
     try {
         const product = new Product({
             _id: req.body.product,
@@ -49,16 +49,31 @@ router.post('/', authToken, warehouseCheck, async(req, res) => {
 })
 
 // PATCH CHANGE AMOUNT
-router.patch('/:id', async(req, res) => {
+router.patch('/:id', authToken, warehouseCheck, async (req, res) => {
     try {
-        const subtractAmount = await Product({
-            product: req.body.product
+        const updateProduct = await Product.findByIdAndUpdate({ _id: req.params.id },
+            req.body,
+            { new: true })
+        res.send({ msg: "Product has been saved ", updateProduct: updateOne })
+
+
+    } catch (error) {
+        res.status(500).send({ msg: error.message })
+    }
+})
+
+module.exports = router
+
+// DELTE CHANGE AMOUNT
+router.delete('/:id', authToken, async (req, res) => {
+    try {
+        const deleteProduct = await Product.deleteOne({
+            _id: req.params.id
         })
-
-        const newProduct = await product.save()
-        res.send({ msg: "Product has been saved ", newProduct })
-
-
+        if (!deleteProduct) {
+            return res.status(404).send({ msg: "No such product" })
+        }
+        res.send(deleteProduct)
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }
