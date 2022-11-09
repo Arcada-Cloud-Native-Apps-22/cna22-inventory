@@ -35,7 +35,8 @@ router.post('/', authToken, warehouseCheck, async(req, res) => {
     try {
         const product = new Product({
             _id: req.body.product,
-            warehouses: req.body.warehouses
+            warehouses: req.body.warehouses,
+            updatedBy: req.authUser
         })
 
         const newProduct = await product.save()

@@ -21,7 +21,8 @@ router.post('/', authToken, async(req, res) => {
     try {
         const warehouse = new Warehouse({
             name: req.body.name,
-            address: req.body.address
+            address: req.body.address,
+            updatedBy: req.authUser
         })
 
         const newWarehouse = await warehouse.save()
