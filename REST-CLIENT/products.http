@@ -5,6 +5,7 @@
 ### GET 
 
 GET {{baseURL}}/products/
+Authorization: {{token}}
 
 ### GET 
 
@@ -15,16 +16,17 @@ Authorization: {{token}}
 
 POST {{baseURL}}/products/
 Content-Type: application/json
+Authorization: {{token}}
 
 {
-	"product": "TestBeer16",
+	"product": "PaskaBiira",
 	"warehouses": [
 		{
 			"name":"Göteborg",
 			"amount": 50
 		},
 		{
-			"name": "Helsingforssss",
+			"name": "Helsingfors",
 			"amount": 40
 		},
 		{
