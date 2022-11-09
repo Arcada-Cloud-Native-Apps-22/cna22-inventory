@@ -1,8 +1,15 @@
 @baseURL = http://localhost:3123
 
+@token = Bearer {{$dotenv API_TEST}}
+
 ### GET 
 
 GET {{baseURL}}/products/
+
+### GET 
+
+GET {{baseURL}}/products/63694a6172b93d0d0eb8b6d0
+Authorization: {{token}}
 
 ### POST 
 

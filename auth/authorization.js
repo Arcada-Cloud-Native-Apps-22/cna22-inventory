@@ -6,7 +6,9 @@ module.exports = (req, res, next) => {
         const authHeader = req.headers['authorization']
         const key = authHeader.split(' ')[1]
 
-        if (key != process.env.API_KEY_PRICING || key != process.env.API_KEY_PRODUCTS || key != process.env.API_KEY_ORDER) {
+        if (key == process.env.API_KEY_PRICING || key == process.env.API_KEY_PRODUCTS || key == process.env.API_KEY_ORDER) {
+            console.log('Found match')
+        } else {
             throw new Error('Invalid Authorization key');
         }
 
