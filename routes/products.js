@@ -48,8 +48,8 @@ router.post('/', authToken, warehouseCheck, async(req, res) => {
     }
 })
 
-// PUT CHANGE AMOUNT
-router.put('/:id', async(req, res) => {
+// PATCH CHANGE AMOUNT
+router.patch('/:id', async(req, res) => {
     try {
         const subtractAmount = await Product({
             product: req.body.product

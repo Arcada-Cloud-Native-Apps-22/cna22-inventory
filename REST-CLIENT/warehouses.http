@@ -1,13 +1,17 @@
 @baseURL = http://localhost:3123
 
+@token = Bearer {{$dotenv API_KEY_ORDER}}
+
 ### GET 
 
 GET {{baseURL}}/warehouses/
+Authorization: {{token}}
 
 ### POST 
 
 POST {{baseURL}}/warehouses/
 Content-Type: application/json
+Authorization: {{token}}
 
 {
     "name": "Helsinki",
@@ -18,9 +22,31 @@ Content-Type: application/json
 
 POST {{baseURL}}/warehouses/
 Content-Type: application/json
+Authorization: {{token}}
 
 {
-    "name": "Vasa",
-    "address": "Vasa gatan 5"
+    "name": "Greta",
+    "address": "Test"
 }
 
+### PATCH 
+
+PATCH {{baseURL}}/warehouses/636bbd97a0fd5afc062a5999
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "name": "Gråta",
+    "address": "Test2"
+}
+
+### DELETE
+
+DELETE {{baseURL}}/warehouses/636bbd97a0fd5afc062a5999
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "name": "Greta",
+    "address": "Test"
+}
