@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const Warehouse = require('../models/warehouseModel')
+const authToken = require('../auth/authorization')
 const { updateOne } = require('../models/warehouseModel')
 
 
 // GET all warehouses
 
-router.get('/', async(req, res) => {
+router.get('/', authToken, async(req, res) => {
     try {
         const warehouses = await Warehouse.find()
         res.send(warehouses)
@@ -16,7 +17,7 @@ router.get('/', async(req, res) => {
 })
 
 // POST a new warehouse
-router.post('/', async(req, res) => {
+router.post('/', authToken, async(req, res) => {
     try {
         const warehouse = new Warehouse({
             name: req.body.name,
@@ -36,7 +37,7 @@ router.post('/', async(req, res) => {
 
 // PATCH
 
-router.patch('/:id', async(req, res) => {
+router.patch('/:id', authToken, async(req, res) => {
     try {
         const updateWH = await Warehouse.findByIdAndUpdate({ _id: req.params.id, createdBy: req.authUser.sub }, // Kanske måste ändra på createdBy
             req.body, // Updateringen som skall ske
@@ -50,7 +51,7 @@ router.patch('/:id', async(req, res) => {
 
 // DELETE
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', authToken, async(req, res) => {
     try {
         const deleteWarehouse = await Warehouse.deleteOne({
             _id: req.params.id,
