@@ -4,6 +4,7 @@ const Product = require('../models/productModel')
 const authToken = require('../auth/authorization')
 const { updateOne } = require('../models/productModel')
 const warehouseCheck = require('../middleware/warehouseCheck')
+const autoFill = require('../middleware/autoFill')
 
 // GET all products
 
@@ -31,20 +32,29 @@ router.get('/:id', authToken, async (req, res) => {
 })
 
 // POST a new product
-router.post('/', authToken, warehouseCheck, async (req, res) => {
-    try {
-        const product = new Product({
-            _id: req.body.product,
-            warehouses: req.body.warehouses,
-            updatedBy: req.authUser
-        })
+router.post('/', authToken, async (req, res) => {
+    if (!req.body.warehouses) {
+        try {
+            autoFill(req.body.product)
+            res.send({ msg: "Product has been saved ", newProduct })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    } else {
+        try {
+            const product = new Product({
+                _id: req.body.product,
+                warehouses: req.body.warehouses,
+                updatedBy: req.authUser
+            })
 
-        const newProduct = await product.save()
-        res.send({ msg: "Product has been saved ", newProduct })
+            const newProduct = await product.save()
+            res.send({ msg: "Product has been saved ", newProduct })
 
 
-    } catch (error) {
-        res.status(500).send({ msg: error.message })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
     }
 })
 
