@@ -1,6 +1,6 @@
 @baseURL = http://localhost:3123
 
-@token = Bearer {{$dotenv API_KEY_ORDER}}
+@token = Bearer {{$dotenv API_TEST}}
 
 ### GET 
 

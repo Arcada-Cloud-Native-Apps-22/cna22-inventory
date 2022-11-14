@@ -4,10 +4,11 @@ const Product = require('../models/productModel')
 const authToken = require('../auth/authorization')
 const { updateOne } = require('../models/productModel')
 const warehouseCheck = require('../middleware/warehouseCheck')
+const autoFill = require('../middleware/autoFill')
 
 // GET all products
 
-router.get('/', authToken, async (req, res) => {
+router.get('/', authToken, async(req, res) => {
     try {
         const product = await Product.find()
         res.send(product)
@@ -18,7 +19,7 @@ router.get('/', authToken, async (req, res) => {
 
 // GET specific product
 
-router.get('/:id', authToken, async (req, res) => {
+router.get('/:id', authToken, async(req, res) => {
     try {
         const product = await Product.findOne({ _id: req.params.id })
         if (!product) {
@@ -31,29 +32,39 @@ router.get('/:id', authToken, async (req, res) => {
 })
 
 // POST a new product
-router.post('/', authToken, warehouseCheck, async (req, res) => {
-    try {
-        const product = new Product({
-            _id: req.body.product,
-            warehouses: req.body.warehouses,
-            updatedBy: req.authUser
-        })
+router.post('/', authToken, async(req, res) => {
+    if (req.body.warehouses == null) {
+        try {
+            autoFill(req.body.product)
+            res.send({ msg: "Product has been saved with auto generated amounts" })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+            console.log("Failed BUT warehouses == null")
+        }
+    } else {
+        try {
+            console.log("Not supposed to be here without warehouse body")
+            const product = new Product({
+                _id: req.body.product,
+                warehouses: req.body.warehouses,
+                updatedBy: req.authUser
+            })
 
-        const newProduct = await product.save()
-        res.send({ msg: "Product has been saved ", newProduct })
+            const newProduct = await product.save()
+            res.send({ msg: "Product has been saved ", newProduct })
 
 
-    } catch (error) {
-        res.status(500).send({ msg: error.message })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
     }
 })
 
 // PATCH CHANGE AMOUNT
-router.patch('/:id', authToken, warehouseCheck, async (req, res) => {
+router.patch('/:id', authToken, warehouseCheck, async(req, res) => {
     try {
         const updateProduct = await Product.findByIdAndUpdate({ _id: req.params.id },
-            req.body,
-            { new: true })
+            req.body, { new: true })
         res.send({ msg: "Product has been saved ", updateProduct: updateOne })
 
 
@@ -65,7 +76,7 @@ router.patch('/:id', authToken, warehouseCheck, async (req, res) => {
 module.exports = router
 
 // DELTE CHANGE AMOUNT
-router.delete('/:id', authToken, async (req, res) => {
+router.delete('/:id', authToken, async(req, res) => {
     try {
         const deleteProduct = await Product.deleteOne({
             _id: req.params.id

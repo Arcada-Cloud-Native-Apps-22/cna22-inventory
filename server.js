@@ -18,6 +18,8 @@ console.log("Go to /public for instructions")
 // statisk sida med instruktioner
 app.use('/', express.static(__dirname + '/public'))
 
+app.use(require('./auth/cors.js'));
+
 // warehouses endpoint
 const warehouseRouter = require('./routes/warehouses')
 app.use('/warehouses', warehouseRouter)
