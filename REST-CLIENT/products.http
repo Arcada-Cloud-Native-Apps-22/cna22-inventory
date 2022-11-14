@@ -19,7 +19,17 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"product": "customid56758r9347462358",
+	"product": "aaasfmid56758r9347462358"
+}
+
+### POST 
+
+POST {{baseURL}}/products/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"product": "c23tomid56758r9347462358",
 	"warehouses": [
 		{
 			"name":"Göteborg",
