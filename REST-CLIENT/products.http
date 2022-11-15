@@ -9,7 +9,7 @@ Authorization: {{token}}
 
 ### GET 
 
-GET {{baseURL}}/products/63694a6172b93d0d0eb8b6d0
+GET {{baseURL}}/products/inventorytest01
 Authorization: {{token}}
 
 ### POST 
@@ -29,7 +29,7 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"product": "c23tomid56758r9347462358",
+	"product": "inventorytest01",
 	"warehouses": [
 		{
 			"name":"Göteborg",
@@ -66,24 +66,19 @@ Authorization: {{token}}
 	]
 }
 
-### PATCH
+### PATCH adjust
 
-PATCH {{baseURL}}/products/customid56758r9347462358
+PATCH {{baseURL}}/products/adjust/inventorytest01
 Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"product": "customid56758r9347462358",
-	"warehouses": [
-		{
-			"name":"Göteborg",
-			"amount": 20
-		}
-	]
+	"warehouse": "Helsingfors",
+	"amount": -5
 }
 
 ### DELETE
 
-DELETE {{baseURL}}/products/customid56758r9347462358
+DELETE {{baseURL}}/products/inventorytest01
 Content-Type: application/json
 Authorization: {{token}}
