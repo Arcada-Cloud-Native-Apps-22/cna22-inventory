@@ -63,35 +63,17 @@ router.post('/', authToken, async(req, res) => {
 // PATCH adjust amount
 router.patch('/adjust/:id', authToken, async (req, res) => {
     try {
-        let warehouseToPatch = null;
-        //temporary monkeybrain code. This if else check assumes hfors->gborg->vasa order and is not viable!!
-        //also its broken anyways atm
-        if(req.body.warehouse == "Helsingfors"){
-            warehouseToPatch = "warehouse.0.amount"
-        }
-        else if(req.body.warehouse == "Göteborg"){
-            warehouseToPatch = "warehouse.1.amount"
-        }
-        else if(req.body.warehouse == "Vasa"){
-            warehouseToPatch = "warehouse.2.amount"
-        }
-        else {
-            return res.status(404).send({ msg: "No such warehouse exists" })
-        }
-        console.log(warehouseToPatch)
-
         //actual product update
-        const updateProduct = await Product.findByIdAndUpdate({ _id: req.params.id },
+        const updateProduct = await Product.updateOne({ _id: req.params.id, warehouses: { $elemMatch: { name: req.body.warehouse}} },
             {
                 //increment value by given amount (supports negative numbers)
                 $inc: {
-                    warehouseToPatch: req.body.amount
+                    "warehouses.$.amount": req.body.amount
                 }
             },
             { new: true })
         res.send({ msg: "Product has been saved ", updateProduct: updateOne })
-
-
+        
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }

@@ -19,7 +19,7 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"product": "aaasfmid56758r9347462358"
+	"product": "inventorytest01"
 }
 
 ### POST 
@@ -73,9 +73,14 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-	"warehouse": "Helsingfors",
-	"amount": -5
+	"warehouse": "Göteborg",
+	"amount": -8
 }
+
+### GET repost so I dont have to scroll
+
+GET {{baseURL}}/products/inventorytest01
+Authorization: {{token}}
 
 ### DELETE
 
